@@ -11,7 +11,7 @@ defmodule HookLineAndSlacker.WebhookListener do
   end
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [])
+    {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [], port: HookLineAndSlacker.port)
   end
 
   get "/zz/health" do

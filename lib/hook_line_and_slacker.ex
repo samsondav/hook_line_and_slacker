@@ -18,4 +18,11 @@ defmodule HookLineAndSlacker do
     IO.inspect HookLineAndSlacker.Mixfile.project
     HookLineAndSlacker.Mixfile.project[:version]
   end
+
+  def port do
+    case System.get_env("PORT") do
+      nil -> 4000
+      port -> String.to_integer(port)
+    end
+  end
 end
