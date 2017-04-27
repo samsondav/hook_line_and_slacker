@@ -26,15 +26,10 @@ defmodule HookLineAndSlacker.WebhookListener do
   end
 
   post "/callbacks/github" do
-    case conn.body_params do
-      %{"action" => "submitted", "pull_request" => %{"url" => url, "title" => title }} ->
-        Logger.info "Pull request submitted: #{title}, #{url}"
-        SlackInteractor.notify_pull_request_submitted(title, url)
-      _ping = %{"zen" => zen} ->
-        Logger.info(zen)
-      _ -> :ok
+    case SlackInteractor.notify_from_github_event(conn.body_params) do
+      :ok -> send_resp(conn, 204, "")
+      :error -> send_resp(conn, 500, "")
     end
-    send_resp(conn, 204, "")
   end
 
   match _ do
