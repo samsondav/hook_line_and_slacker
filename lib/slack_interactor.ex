@@ -1,6 +1,8 @@
 defmodule SlackInteractor do
+  @moduledoc "Helper module for posting messages to slack"
   require Logger
 
+  @doc "Accepts a JSON object from a github webhook POST"
   def notify_from_github_event(%{"action" => action, "pull_request" => pull_request}) do
     notify_pull_request(action, pull_request)
   end

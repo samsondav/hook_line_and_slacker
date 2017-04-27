@@ -14,10 +14,12 @@ defmodule HookLineAndSlacker do
     Supervisor.start_link(children, opts)
   end
 
+  @doc "The application version, taken from mix.exs"
   def version do
     HookLineAndSlacker.Mixfile.project[:version]
   end
 
+  @doc "Port that the web server should listen on"
   def port do
     case Application.fetch_env!(:hook_line_and_slacker, :port) do
       port when is_binary(port) -> String.to_integer(port)

@@ -12,7 +12,7 @@ To start the app:
 
 Sanity check:
 
-Visit [`localhost:4000/zz/health`](http://localhost:4000) in your browser, you should see some JSON.
+Visit [`localhost:4000/zz/health`](localhost:4000/zz/health) in your browser, you should see some JSON.
 
 ## Tests
 

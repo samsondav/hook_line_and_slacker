@@ -31,6 +31,7 @@ defmodule HookLineAndSlacker.WebhookListener do
     end
   end
 
+  @doc "404 route"
   match _ do
     conn
     |> send_resp(404, "Nothing here")
