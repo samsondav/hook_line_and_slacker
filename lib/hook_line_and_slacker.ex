@@ -20,6 +20,9 @@ defmodule HookLineAndSlacker do
   end
 
   def port do
-    Application.fetch_env!(:hook_line_and_slacker, :port)
+    case Application.fetch_env!(:hook_line_and_slacker, :port) do
+      port when is_binary(port) -> String.to_integer(port)
+      port -> port
+    end
   end
 end
