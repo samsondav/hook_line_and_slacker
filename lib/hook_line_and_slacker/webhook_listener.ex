@@ -23,4 +23,10 @@ defmodule HookLineAndSlacker.WebhookListener do
     |> send_resp(200, Poison.encode!(body))
     |> halt
   end
+
+  match _ do
+    conn
+    |> send_resp(404, "Nothing here")
+    |> halt
+  end
 end
