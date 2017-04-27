@@ -1,4 +1,5 @@
 defmodule HookLineAndSlacker do
+  require Logger
   @moduledoc false
 
   use Application
@@ -19,9 +20,6 @@ defmodule HookLineAndSlacker do
   end
 
   def port do
-    case System.get_env("PORT") do
-      nil -> 4000
-      port -> String.to_integer(port)
-    end
+    Application.fetch_env!(:hook_line_and_slacker, :port)
   end
 end

@@ -5,6 +5,8 @@ defmodule HookLineAndSlackerTest do
 
   @opts HookLineAndSlacker.WebhookListener.init([])
 
+  import Mock
+
   test "/zz/health returns health info" do
     # Create a test connection
     conn = conn(:get, "/zz/health")
@@ -23,9 +25,13 @@ defmodule HookLineAndSlackerTest do
     conn = conn(:post, "/callbacks/github", body)
       |> put_req_header("content-type", "application/json")
 
-    conn = HookLineAndSlacker.WebhookListener.call(conn, @opts)
+    with_mock SlackInteractor, [notify_pull_request_submitted: fn(_title, _url) -> :ok end] do
+      conn = HookLineAndSlacker.WebhookListener.call(conn, @opts)
 
-    assert conn.state == :sent
-    assert conn.status = 204
+      assert called SlackInteractor.notify_pull_request_submitted("Add a README description", "https://api.github.com/repos/baxterthehacker/public-repo/pulls/8")
+
+      assert conn.state == :sent
+      assert(conn.status == 204)
+    end
   end
 end
