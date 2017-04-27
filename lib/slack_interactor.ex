@@ -5,6 +5,6 @@ defmodule SlackInteractor do
   end
 
   defp channel do
-    "C54K92TLG"
+    System.get_env("CHANNEL")
   end
 end
