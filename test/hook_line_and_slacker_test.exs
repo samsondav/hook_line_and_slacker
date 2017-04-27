@@ -17,4 +17,15 @@ defmodule HookLineAndSlackerTest do
     assert conn.status == 200
     assert Poison.decode!(conn.resp_body) == %{"status" => "ok", "version" => "0.1.0"}
   end
+
+  test "pull request submitted webhook" do
+    body = File.read!("./test/fixtures/pull_request_submitted.json")
+    conn = conn(:post, "/callbacks/github", body)
+      |> put_req_header("content-type", "application/json")
+
+    conn = HookLineAndSlacker.WebhookListener.call(conn, @opts)
+
+    assert conn.state == :sent
+    assert conn.status = 204
+  end
 end
