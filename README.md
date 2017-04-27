@@ -1,5 +1,7 @@
 # HookLineAndSlacker
 
+You must provide your slack token using the SLACK_TOKEN=XXX env variable (you can get a token [here](https://api.slack.com/custom-integrations/legacy-tokens)).
+
 To start the app:
 
   * Install dependencies with `mix deps.get`

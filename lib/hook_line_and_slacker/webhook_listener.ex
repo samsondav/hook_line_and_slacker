@@ -28,8 +28,8 @@ defmodule HookLineAndSlacker.WebhookListener do
   post "/callbacks/github" do
     case conn.body_params do
       %{"action" => "submitted", "pull_request" => %{"url" => url, "title" => title }} ->
-        IO.inspect(url)
-        IO.inspect(title)
+        SlackInteractor.notify_pull_request_submitted(title, url)
+      _ping = %{"zen" => zen} -> Logger.info(zen)
       _ -> :ok
     end
     send_resp(conn, 204, "")

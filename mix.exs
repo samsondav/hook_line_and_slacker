@@ -33,6 +33,8 @@ defmodule HookLineAndSlacker.Mixfile do
       {:cowboy, "~> 1.1"},
       {:plug, "~> 1.3"},
       {:poison, "~> 3.0"},
+      {:slackex, "~> 0.0.1"},
+      {:mock, "~> 0.2.0", only: :test},
     ]
   end
 end
