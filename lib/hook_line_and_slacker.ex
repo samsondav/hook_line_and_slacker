@@ -1,18 +1,16 @@
 defmodule HookLineAndSlacker do
-  @moduledoc """
-  Documentation for HookLineAndSlacker.
-  """
+  @moduledoc false
 
-  @doc """
-  Hello world.
+  use Application
 
-  ## Examples
+  def start(_type, _args) do
+    import Supervisor.Spec, warn: false
 
-      iex> HookLineAndSlacker.hello
-      :world
+    children = [
+      worker(HookLineAndSlacker.WebhookListener, [])
+    ]
 
-  """
-  def hello do
-    :world
+    opts = [strategy: :one_for_one, name: HexVersion.Supervisor]
+    Supervisor.start_link(children, opts)
   end
 end
