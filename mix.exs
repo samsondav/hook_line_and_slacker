@@ -16,7 +16,7 @@ defmodule HookLineAndSlacker.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger],
-     mod: {HookLineAndSlacker.Application, []}]
+     mod: {HookLineAndSlacker, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -29,6 +29,9 @@ defmodule HookLineAndSlacker.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:cowboy, "~> 1.1"},
+      {:plug, "~> 1.3"}
+    ]
   end
 end
