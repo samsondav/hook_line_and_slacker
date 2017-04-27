@@ -13,4 +13,9 @@ defmodule HookLineAndSlacker do
     opts = [strategy: :one_for_one, name: HexVersion.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  def version do
+    IO.inspect HookLineAndSlacker.Mixfile.project
+    HookLineAndSlacker.Mixfile.project[:version]
+  end
 end
