@@ -15,7 +15,6 @@ defmodule HookLineAndSlacker do
   end
 
   def version do
-    IO.inspect HookLineAndSlacker.Mixfile.project
     HookLineAndSlacker.Mixfile.project[:version]
   end
 

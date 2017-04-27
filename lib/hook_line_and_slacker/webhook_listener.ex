@@ -3,6 +3,7 @@ defmodule HookLineAndSlacker.WebhookListener do
   require Logger
 
   plug Plug.Logger
+  plug Plug.Parsers, parsers: [:json], json_decoder: Poison
   plug :match
   plug :dispatch
 
@@ -22,6 +23,16 @@ defmodule HookLineAndSlacker.WebhookListener do
     conn
     |> send_resp(200, Poison.encode!(body))
     |> halt
+  end
+
+  post "/callbacks/github" do
+    case conn.body_params do
+      %{"action" => "submitted", "pull_request" => %{"url" => url, "title" => title }} ->
+        IO.inspect(url)
+        IO.inspect(title)
+      _ -> :ok
+    end
+    send_resp(conn, 204, "")
   end
 
   match _ do

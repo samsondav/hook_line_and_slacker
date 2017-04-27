@@ -9,6 +9,14 @@ Sanity check:
 
 Visit [`localhost:4000/zz/health`](http://localhost:4000) in your browser, you should see some JSON.
 
+## Tests
+
+Run `mix test`
+
+## Deployment
+
+An example version is deployed [on heroku](https://peaceful-journey-12006.herokuapp.com/zz/health).
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
