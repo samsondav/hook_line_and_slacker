@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-config :hook_line_and_slacker, port: 4000
+config :hook_line_and_slacker, port: 4000, channel: System.get_env("CHANNEL")
 #
 # And access this configuration in your application as:
 #

@@ -1,5 +1,4 @@
 defmodule HookLineAndSlacker do
-  require Logger
   @moduledoc false
 
   use Application
