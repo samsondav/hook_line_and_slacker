@@ -28,7 +28,6 @@ defmodule HookLineAndSlacker.WebhookListener do
   post "/callbacks/github" do
     case SlackInteractor.notify_from_github_event(conn.body_params) do
       :ok -> send_resp(conn, 204, "")
-      :error -> send_resp(conn, 500, "")
     end
   end
 
