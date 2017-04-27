@@ -1,6 +1,13 @@
 # HookLineAndSlacker
 
-**TODO: Add description**
+To start the app:
+
+  * Install dependencies with `mix deps.get`
+  * Start web server with `iex -S mix`
+
+Sanity check:
+
+Visit [`localhost:4000/zz/health`](http://localhost:4000) in your browser, you should see some JSON.
 
 ## Installation
 

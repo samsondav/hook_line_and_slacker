@@ -14,9 +14,13 @@ defmodule HookLineAndSlacker.WebhookListener do
     {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [])
   end
 
-  get "/" do
+  get "/zz/health" do
+    body = %{
+      status: :ok,
+      version: HookLineAndSlacker.version,
+    }
     conn
-    |> send_resp(200, "Hello world!")
+    |> send_resp(200, Poison.encode!(body))
     |> halt
   end
 end
