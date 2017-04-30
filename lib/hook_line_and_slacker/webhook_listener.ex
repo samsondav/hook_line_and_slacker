@@ -12,13 +12,14 @@ defmodule HookLineAndSlacker.WebhookListener do
   end
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [], port: HookLineAndSlacker.port)
+    port = Application.fetch_env!(:hook_line_and_slacker, :port)
+    {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [], port: port)
   end
 
   get "/zz/health" do
     body = %{
       status: :ok,
-      version: HookLineAndSlacker.version,
+      version: version(),
     }
     conn
     |> send_resp(200, Poison.encode!(body))
@@ -31,10 +32,13 @@ defmodule HookLineAndSlacker.WebhookListener do
     end
   end
 
-  @doc "404 route"
   match _ do
     conn
     |> send_resp(404, "Nothing here")
     |> halt
+  end
+
+  defp version do
+    HookLineAndSlacker.Mixfile.project[:version]
   end
 end
